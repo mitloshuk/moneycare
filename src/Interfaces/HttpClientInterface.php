@@ -37,10 +37,9 @@ interface HttpClientInterface
 
     /**
      * @param string $uri
-     * @param array  $params
      *
      * @return string
      * @throws MoneyCareException
      */
-    public function get(string $uri, array $params): string;
+    public function get(string $uri): string;
 }

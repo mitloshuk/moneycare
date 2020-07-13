@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use MoneyCare\Exceptions\HttpClientErrorException;
 use MoneyCare\Exceptions\MoneyCareApiException;
-use MoneyCare\Exceptions\MoneyCareErrorException;
 use MoneyCare\Exceptions\MoneyCareUnauthorizedException;
 use MoneyCare\Interfaces\HttpClientInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class HttpClient
@@ -38,11 +38,27 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
+     * @return Client
+     */
+    protected function getClient(): Client
+    {
+        return $this->client;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function setAuth(string $username, string $password): void
     {
         $this->auth = [$username, $password];
+    }
+
+    /**
+     * @return array
+     */
+    public function getAuth(): array
+    {
+        return $this->auth;
     }
 
     /**
@@ -64,9 +80,9 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function get(string $uri, array $params): string
+    public function get(string $uri): string
     {
-        return $this->request($uri, 'get', $params);
+        return $this->request($uri, 'get');
     }
 
     /**
@@ -78,12 +94,15 @@ class HttpClient implements HttpClientInterface
      * @throws HttpClientErrorException
      * @throws MoneyCareApiException
      */
-    protected function request(string $uri, string $method, array $params): string
+    protected function request(string $uri, string $method, array $params = []): string
     {
         try {
-            $response = $this->client->$method($uri, [
+            /**
+             * @var ResponseInterface $response
+             */
+            $response = $this->getClient()->$method($uri, [
                 'json' => $params,
-                'auth' => $this->auth,
+                'auth' => $this->getAuth(),
             ]);
         } catch (GuzzleException $e) {
             throw new HttpClientErrorException('HttpClient error', 0, $e);

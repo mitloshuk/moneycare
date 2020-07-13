@@ -18,24 +18,24 @@ abstract class BaseDictionary
      *
      * @return array
      */
-    abstract public function getLabels(): array;
+    abstract public static function getLabels(): array;
 
     /**
      * @param string|int $value
      *
      * @return string|int
      */
-    public function getLabel($value)
+    public static function getLabel($value)
     {
-        return $this->getLabels()[$value];
+        return static::getLabels()[$value];
     }
 
     /**
      * @return array
      */
-    public function getValues(): array
+    public static function getValues(): array
     {
-        return array_keys($this->getLabels());
+        return array_keys(static::getLabels());
     }
 
     /**
@@ -43,8 +43,8 @@ abstract class BaseDictionary
      *
      * @return bool
      */
-    public function exists($value): bool
+    public static function exists($value): bool
     {
-        return in_array($value, $this->getValues(), true);
+        return in_array($value, static::getValues(), true);
     }
 }

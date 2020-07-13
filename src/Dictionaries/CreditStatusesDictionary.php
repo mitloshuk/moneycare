@@ -20,7 +20,7 @@ class CreditStatusesDictionary extends BaseDictionary
     /**
      * {@inheritDoc}
      */
-    public function getLabels(): array
+    public static function getLabels(): array
     {
         return [
             self::ONLINE_FORM => 'Заполнение формы',

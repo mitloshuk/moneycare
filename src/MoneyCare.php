@@ -4,6 +4,8 @@ namespace MoneyCare;
 
 use MoneyCare\Clients\HttpClient;
 use MoneyCare\Interfaces\HttpClientInterface;
+use MoneyCare\Models\OrderUpdating;
+use MoneyCare\Models\OrderCreation;
 use MoneyCare\Requests\CreateOrderRequest;
 use MoneyCare\Requests\OrderDetailsRequest;
 use MoneyCare\Requests\UpdateOrderRequest;
@@ -33,34 +35,44 @@ class MoneyCare
     }
 
     /**
+     * @param OrderCreation $model
+     *
      * @return CreateOrderRequest
      */
-    public function createOrder(): CreateOrderRequest
+    public function createOrder(OrderCreation $model): CreateOrderRequest
     {
-        return new CreateOrderRequest($this);
+        return new CreateOrderRequest($this, $model);
     }
 
     /**
+     * @param string $orderId
+     * @param OrderUpdating $model
+     *
      * @return UpdateOrderRequest
      */
-    public function updateOrder(): UpdateOrderRequest
+    public function updateOrder(string $orderId, OrderUpdating $model): UpdateOrderRequest
     {
-        return new UpdateOrderRequest($this);
+        return new UpdateOrderRequest($this, $orderId, $model);
     }
 
     /**
+     * @param string $orderId
+     *
      * @return OrderDetailsRequest
      */
-    public function orderDetails(): OrderDetailsRequest
+    public function orderDetails(string $orderId): OrderDetailsRequest
     {
-        return new OrderDetailsRequest($this);
+        return new OrderDetailsRequest($this, $orderId);
     }
 
     /**
+     * @param string $orderId
+     * @param string $model
+     *
      * @return UpdateStatusRequest
      */
-    public function updateStatus(): UpdateStatusRequest
+    public function updateStatus(string $orderId, string $status): UpdateStatusRequest
     {
-        return new UpdateStatusRequest($this);
+        return new UpdateStatusRequest($this, $model);
     }
 }

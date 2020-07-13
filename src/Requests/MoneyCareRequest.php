@@ -29,5 +29,10 @@ abstract class MoneyCareRequest implements MoneyCareRequestInterface
         $this->moneyCare = $moneyCare;
     }
 
-    abstract protected function getMethodUrl();
+    /**
+     * Return absolute url for method
+     *
+     * @return string
+     */
+    abstract protected function getMethodUrl(): string;
 }

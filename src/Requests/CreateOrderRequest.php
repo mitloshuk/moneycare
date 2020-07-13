@@ -2,6 +2,12 @@
 
 namespace MoneyCare\Requests;
 
+use MoneyCare\Exceptions\ModelRequiredFieldException;
+use MoneyCare\Exceptions\MoneyCareException;
+use MoneyCare\Models\OrderCreation;
+use MoneyCare\MoneyCare;
+use MoneyCare\Responses\CreateResponse;
+
 /**
  * Class CreateOrderRequest
  *
@@ -11,18 +17,40 @@ namespace MoneyCare\Requests;
  */
 class CreateOrderRequest extends MoneyCareRequest
 {
-    protected $orderId;
+    /**
+     * @var OrderCreation
+     */
+    protected $model;
 
-    public function execute()
+    /**
+     * CreateOrderRequest constructor.
+     *
+     * @param MoneyCare     $moneyCare
+     * @param OrderCreation $model
+     */
+    public function __construct(MoneyCare $moneyCare, OrderCreation $model)
     {
-        $r = $this->moneyCare->httpClient->post($this->getMethodUrl(), [
-            'pointId' => 'tt_test_1'
-        ]);
+        parent::__construct($moneyCare);
 
-        die(var_dump($r));
+        $this->model = $model;
     }
 
-    protected function getMethodUrl()
+    /**
+     * {@inheritDoc}
+     *
+     * @return CreateResponse
+     */
+    public function execute(): CreateResponse
+    {
+        $response = $this->moneyCare->httpClient->post($this->getMethodUrl(), $this->model->getData());
+
+        return new CreateResponse($response);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMethodUrl(): string
     {
         return self::API_URL . '/broker/api/v2/orders/create';
     }

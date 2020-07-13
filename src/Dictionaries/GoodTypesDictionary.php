@@ -15,7 +15,7 @@ class GoodTypesDictionary extends BaseDictionary
     /**
      * {@inheritDoc}
      */
-    public function getLabels(): array
+    public static function getLabels(): array
     {
         return [
             self::PRODUCT => 'Товар',
