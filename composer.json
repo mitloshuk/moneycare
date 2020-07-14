@@ -1,4 +1,16 @@
 {
+    "name": "mitloshuk/yii2-amit",
+    "description": "PHP library for MoneyCare API. MoneyCare is the leading credit platform for PIC lending in stores. More than 15 solutions from banks and MFIs in 2 minutes",
+    "type": "library",
+    "keywords": ["moneycare", "credit"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Mitloshuk",
+            "email": "artem@mitloshuk.name"
+        }
+    ],
+    "version": "1.0.0",
     "require": {
         "php": "^7.2",
         "ext-json": "*",
