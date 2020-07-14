@@ -2,9 +2,9 @@
 
 namespace MoneyCare\Responses;
 
-use MoneyCare\Interfaces\DetailsResponseInterface;
 use MoneyCare\Models\Good;
 use MoneyCare\Models\Service;
+use MoneyCare\Responses\Interfaces\DetailsResponseInterface;
 
 /**
  * Class DetailsResponse

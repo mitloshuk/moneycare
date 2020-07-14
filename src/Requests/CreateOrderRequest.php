@@ -4,6 +4,7 @@ namespace MoneyCare\Requests;
 
 use MoneyCare\Models\OrderCreation;
 use MoneyCare\MoneyCare;
+use MoneyCare\Requests\Interfaces\CreateOrderRequestInterface;
 use MoneyCare\Responses\CreateResponse;
 
 /**
@@ -13,7 +14,7 @@ use MoneyCare\Responses\CreateResponse;
  *
  * @package MoneyCare\Requests
  */
-class CreateOrderRequest extends MoneyCareRequest
+class CreateOrderRequest extends BaseMoneyCareRequest implements CreateOrderRequestInterface
 {
     /**
      * @var OrderCreation
@@ -35,8 +36,6 @@ class CreateOrderRequest extends MoneyCareRequest
 
     /**
      * {@inheritDoc}
-     *
-     * @return CreateResponse
      */
     public function execute(): CreateResponse
     {

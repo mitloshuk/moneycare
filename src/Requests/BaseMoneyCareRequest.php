@@ -2,15 +2,14 @@
 
 namespace MoneyCare\Requests;
 
-use MoneyCare\Interfaces\MoneyCareRequestInterface;
 use MoneyCare\MoneyCare;
 
 /**
- * Class MoneyCareRequest
+ * Class BaseMoneyCareRequest
  *
  * @package MoneyCare\Requests
  */
-abstract class MoneyCareRequest implements MoneyCareRequestInterface
+abstract class BaseMoneyCareRequest
 {
     protected const API_URL = 'https://mc.moneycare.su';
 

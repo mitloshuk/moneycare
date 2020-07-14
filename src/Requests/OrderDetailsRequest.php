@@ -2,16 +2,18 @@
 
 namespace MoneyCare\Requests;
 
-use MoneyCare\Exceptions\MoneyCareException;
 use MoneyCare\MoneyCare;
+use MoneyCare\Requests\Interfaces\OrderDetailsRequestInterface;
 use MoneyCare\Responses\DetailsResponse;
 
 /**
  * Class OrderDetailsRequest
  *
+ * @link https://moneycare.atlassian.net/wiki/spaces/MCAPIEXTORDER/pages/17334303
+ *
  * @package MoneyCare\Requests
  */
-class OrderDetailsRequest extends MoneyCareRequest
+class OrderDetailsRequest extends BaseMoneyCareRequest implements OrderDetailsRequestInterface
 {
     /**
      * @var string
@@ -33,9 +35,6 @@ class OrderDetailsRequest extends MoneyCareRequest
 
     /**
      * {@inheritDoc}
-     *
-     * @return DetailsResponse
-     * @throws MoneyCareException
      */
     public function execute(): DetailsResponse
     {

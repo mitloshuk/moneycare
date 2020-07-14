@@ -3,9 +3,8 @@
 namespace MoneyCare;
 
 use MoneyCare\Clients\HttpClient;
-use MoneyCare\Exceptions\ModelRequiredFieldException;
 use MoneyCare\Exceptions\MoneyCareException;
-use MoneyCare\Interfaces\HttpClientInterface;
+use MoneyCare\Clients\Interfaces\HttpClientInterface;
 use MoneyCare\Models\OrderUpdating;
 use MoneyCare\Models\OrderCreation;
 use MoneyCare\Requests\CreateOrderRequest;
@@ -13,7 +12,9 @@ use MoneyCare\Requests\OrderDetailsRequest;
 use MoneyCare\Requests\UpdateOrderRequest;
 use MoneyCare\Requests\UpdateStatusRequest;
 use MoneyCare\Responses\CreateResponse;
+use MoneyCare\Responses\Interfaces\CreateResponseInterface;
 use MoneyCare\Responses\DetailsResponse;
+use MoneyCare\Responses\Interfaces\DetailsResponseInterface;
 
 /**
  * Class MoneyCare
@@ -49,7 +50,7 @@ class MoneyCare
      * @return CreateResponse
      * @throws MoneyCareException
      */
-    public function createOrder(OrderCreation $model): CreateResponse
+    public function createOrder(OrderCreation $model): CreateResponseInterface
     {
         return (new CreateOrderRequest($this, $model))->execute();
     }
@@ -72,7 +73,7 @@ class MoneyCare
      * @return DetailsResponse
      * @throws MoneyCareException
      */
-    public function orderDetails(string $orderId): DetailsResponse
+    public function orderDetails(string $orderId): DetailsResponseInterface
     {
         return (new OrderDetailsRequest($this, $orderId))->execute();
     }

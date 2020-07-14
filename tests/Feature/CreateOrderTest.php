@@ -81,7 +81,7 @@ class CreateOrderTest extends TestCase
         $model = (new OrderCreation())->addGood($good)
             ->setForceScore(true)
             ->setPassport($passport)
-            ->setFirstNamec('Артем')
+            ->setFirstName('Артем')
             ->setSecondName('Артемович')
             ->setLastName('Артемов')
             ->setBirthDay(new DateTime('now'))

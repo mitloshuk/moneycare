@@ -1,24 +1,24 @@
 <?php
 
-namespace MoneyCare\Interfaces;
+namespace MoneyCare\Requests\Interfaces;
 
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 use MoneyCare\Exceptions\MoneyCareException;
 
 /**
- * Interface MoneyCareRequestInterface
+ * Interface UpdateOrderRequestInterface
  *
  * @package MoneyCare\Interfaces
  */
-interface MoneyCareRequestInterface
+interface UpdateOrderRequestInterface
 {
     /**
-     * Execute request
+     * Execute creation request
      *
-     * @return mixed
+     * @return void
      *
      * @throws ModelRequiredFieldException
      * @throws MoneyCareException
      */
-    public function execute();
+    public function execute(): void;
 }

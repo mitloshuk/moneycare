@@ -1,6 +1,6 @@
 <?php
 
-namespace MoneyCare\Interfaces;
+namespace MoneyCare\Clients\Interfaces;
 
 use MoneyCare\Exceptions\MoneyCareException;
 

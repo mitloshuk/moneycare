@@ -4,13 +4,16 @@ namespace MoneyCare\Requests;
 
 use MoneyCare\Models\OrderUpdating;
 use MoneyCare\MoneyCare;
+use MoneyCare\Requests\Interfaces\UpdateOrderRequestInterface;
 
 /**
  * Class UpdateOrderRequest
  *
+ * @link https://moneycare.atlassian.net/wiki/spaces/MCAPIEXTORDER/pages/28021130
+ *
  * @package MoneyCare\Requests
  */
-class UpdateOrderRequest extends MoneyCareRequest
+class UpdateOrderRequest extends BaseMoneyCareRequest implements UpdateOrderRequestInterface
 {
     /**
      * @var string
@@ -39,12 +42,10 @@ class UpdateOrderRequest extends MoneyCareRequest
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
-    public function execute(): string
+    public function execute(): void
     {
-        return $this->moneyCare->httpClient->put($this->getMethodUrl(), $this->model->getData());
+        $this->moneyCare->httpClient->put($this->getMethodUrl(), $this->model->getData());
     }
 
     /**

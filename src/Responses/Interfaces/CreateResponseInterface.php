@@ -1,6 +1,6 @@
 <?php
 
-namespace MoneyCare\Interfaces;
+namespace MoneyCare\Responses\Interfaces;
 
 interface CreateResponseInterface
 {

@@ -3,13 +3,16 @@
 namespace MoneyCare\Requests;
 
 use MoneyCare\MoneyCare;
+use MoneyCare\Requests\Interfaces\UpdateStatusRequestInterface;
 
 /**
  * Class UpdateStatusRequest
  *
+ * @link https://moneycare.atlassian.net/wiki/spaces/MCAPIEXTORDER/pages/26476545
+ *
  * @package MoneyCare\Requests
  */
-class UpdateStatusRequest extends MoneyCareRequest
+class UpdateStatusRequest extends BaseMoneyCareRequest implements UpdateStatusRequestInterface
 {
     /**
      * @var string
@@ -38,8 +41,6 @@ class UpdateStatusRequest extends MoneyCareRequest
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function execute(): void
     {

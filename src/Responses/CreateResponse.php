@@ -2,7 +2,7 @@
 
 namespace MoneyCare\Responses;
 
-use MoneyCare\Interfaces\CreateResponseInterface;
+use MoneyCare\Responses\Interfaces\CreateResponseInterface;
 
 class CreateResponse implements CreateResponseInterface
 {
