@@ -2,29 +2,25 @@
 
 namespace MoneyCare\Tests\Unit\Models;
 
-use Codeception\PHPUnit\TestCase;
 use MoneyCare\Models\OrderUpdating;
-use ReflectionClass;
-use ReflectionProperty;
 
-class OrderUpdatingTest extends TestCase
+class OrderUpdatingTest extends ModelTest
 {
-    public function testAllSettersAreExists()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getClassForSettersTest(): ?string
     {
-        $creation = (new OrderUpdating());
-        $reflect = new ReflectionClass($creation);
-        $props = $reflect->getProperties(ReflectionProperty::IS_PROTECTED);
+        return OrderUpdating::class;
+    }
 
-        $except = ['goods'];
-
-        foreach ($props as $prop) {
-            if (in_array($prop->getName(), $except)) {
-                continue;
-            }
-
-            $method = 'set' . ucfirst($prop->getName());
-
-            self::assertTrue(method_exists($creation, $method));
-        }
+    /**
+     * {@inheritDoc}
+     */
+    protected function getSpecificMethodsForSettersTest(): array
+    {
+        return [
+            'goods' => 'addGood',
+        ];
     }
 }

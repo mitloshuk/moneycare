@@ -3,7 +3,7 @@
 namespace MoneyCare\Models;
 
 use MoneyCare\Dictionaries\GoodTypesDictionary;
-use MoneyCare\Exceptions\GoodTypeException;
+use MoneyCare\Exceptions\PredefinedValue\GoodTypeException;
 
 /**
  * Class Good
@@ -12,15 +12,54 @@ use MoneyCare\Exceptions\GoodTypeException;
  */
 class Good extends Model
 {
+    /**
+     * @var string
+     */
     protected $type;
+
+    /**
+     * @var string
+     */
     protected $groupName;
+
+    /**
+     * @var string
+     */
     protected $groupId;
+
+    /**
+     * @var string
+     */
     protected $brand;
+
+    /**
+     * @var string
+     */
     protected $brandId;
+
+    /**
+     * @var string
+     */
     protected $model;
+
+    /**
+     * @var string
+     */
     protected $title;
+
+    /**
+     * @var string
+     */
     protected $serialNumber;
+
+    /**
+     * @var float
+     */
     protected $price;
+
+    /**
+     * @var int
+     */
     protected $count;
 
     /**
@@ -51,6 +90,14 @@ class Good extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
      * @param string $groupName
      *
      * @return Good
@@ -60,6 +107,14 @@ class Good extends Model
         $this->groupName = $groupName;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGroupName(): string
+    {
+        return $this->groupName;
     }
 
     /**
@@ -75,6 +130,14 @@ class Good extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getGroupId(): string
+    {
+        return $this->groupId;
+    }
+
+    /**
      * @param string $brand
      *
      * @return Good
@@ -84,6 +147,14 @@ class Good extends Model
         $this->brand = $brand;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand(): string
+    {
+        return $this->brand;
     }
 
     /**
@@ -99,6 +170,14 @@ class Good extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getBrandId(): string
+    {
+        return $this->brandId;
+    }
+
+    /**
      * @param string $model
      *
      * @return Good
@@ -108,6 +187,14 @@ class Good extends Model
         $this->model = $model;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->model;
     }
 
     /**
@@ -123,6 +210,14 @@ class Good extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
      * @param string $serialNumber
      *
      * @return Good
@@ -132,6 +227,14 @@ class Good extends Model
         $this->serialNumber = $serialNumber;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSerialNumber(): string
+    {
+        return $this->serialNumber;
     }
 
     /**
@@ -147,6 +250,14 @@ class Good extends Model
     }
 
     /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
      * @param int $count
      *
      * @return Good
@@ -156,5 +267,13 @@ class Good extends Model
         $this->count = $count;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
     }
 }

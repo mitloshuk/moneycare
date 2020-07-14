@@ -2,45 +2,44 @@
 
 namespace MoneyCare\Tests\Unit\Models;
 
-use Codeception\PHPUnit\TestCase;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 use MoneyCare\Models\Good;
 use MoneyCare\Models\OrderCreation;
 use MoneyCare\Models\Passport;
-use ReflectionClass;
-use ReflectionProperty;
-use ReflectionException;
+use DateTime;
 
 /**
  * Class OrderCreationTest
  *
  * @package MoneyCare\Tests\Unit\Models
  */
-class OrderCreationTest extends TestCase
+class OrderCreationTest extends ModelTest
 {
     /**
-     * @throws ReflectionException
+     * {@inheritDoc}
      */
-    public function testAllSettersAreExists()
+    protected function getClassForSettersTest(): ?string
     {
-        $creation = (new OrderCreation());
-        $reflect = new ReflectionClass($creation);
-        $props = $reflect->getProperties(ReflectionProperty::IS_PROTECTED);
-
-        $except = ['goods', 'offers', 'creditTypes', 'installmentPeriods'];
-
-        foreach ($props as $prop) {
-            if (in_array($prop->getName(), $except)) {
-                continue;
-            }
-
-            $method = 'set' . ucfirst($prop->getName());
-
-            self::assertTrue(method_exists($creation, $method));
-        }
+        return OrderCreation::class;
     }
 
-    public function testRequirePointIdField()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getSpecificMethodsForSettersTest(): array
+    {
+        return [
+            'goods'              => 'addGood',
+            'offers'             => 'addOffer',
+            'creditTypes'        => 'addCreditType',
+            'installmentPeriods' => 'addInstallmentPeriod',
+        ];
+    }
+
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequirePointIdField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
@@ -49,95 +48,115 @@ class OrderCreationTest extends TestCase
         (new OrderCreation())->addGood($good)->getData();
     }
 
-    public function testRequireGoodsField()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireGoodsField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         (new OrderCreation())->setPointId(123)->getData();
     }
 
-    public function testRequirePassportFieldWhenForceScoring()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequirePassportFieldWhenForceScoring(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         $good = (new Good())->setPrice(10000);
-        $model = (new OrderCreation())->addGood($good)
+        (new OrderCreation())->addGood($good)
             ->setPointId(123)
             ->setFirstName('test')
             ->setSecondName('test')
             ->setLastName('test')
-            ->setBirthDay(new \DateTime('now'))
+            ->setBirthDay(new DateTime('now'))
             ->setForceScore(true)
             ->getData();
     }
 
-    public function testRequireFirstNameFieldWhenForceScoring()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireFirstNameFieldWhenForceScoring(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         $passport = (new Passport())->setNumber(123)
             ->setSeries(123)
-            ->setIssueDate((new \DateTime('now')));
+            ->setIssueDate((new DateTime('now')));
 
         $good = (new Good())->setPrice(10000);
-        $model = (new OrderCreation())->addGood($good)
+        (new OrderCreation())->addGood($good)
             ->setPointId(123)
             ->setPassport($passport)
             ->setSecondName('test')
             ->setLastName('test')
-            ->setBirthDay(new \DateTime('now'))
+            ->setBirthDay(new DateTime('now'))
             ->setForceScore(true)
             ->getData();
     }
 
-    public function testRequireSecondNameFieldWhenForceScoring()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireSecondNameFieldWhenForceScoring(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         $passport = (new Passport())->setNumber(123)
             ->setSeries(123)
-            ->setIssueDate((new \DateTime('now')));
+            ->setIssueDate((new DateTime('now')));
 
         $good = (new Good())->setPrice(10000);
-        $model = (new OrderCreation())->addGood($good)
+        (new OrderCreation())->addGood($good)
             ->setPointId(123)
             ->setPassport($passport)
             ->setFirstName('test')
             ->setLastName('test')
-            ->setBirthDay(new \DateTime('now'))
+            ->setBirthDay(new DateTime('now'))
             ->setForceScore(true)
             ->getData();
     }
 
-    public function testRequireLastNameFieldWhenForceScoring()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireLastNameFieldWhenForceScoring(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         $passport = (new Passport())->setNumber(123)
             ->setSeries(123)
-            ->setIssueDate((new \DateTime('now')));
+            ->setIssueDate((new DateTime('now')));
 
         $good = (new Good())->setPrice(10000);
-        $model = (new OrderCreation())->addGood($good)
+        (new OrderCreation())->addGood($good)
             ->setPointId(123)
+            ->setPassport($passport)
             ->setFirstName('test')
             ->setSecondName('test')
-            ->setBirthDay(new \DateTime('now'))
+            ->setBirthDay(new DateTime('now'))
             ->setForceScore(true)
             ->getData();
     }
 
-    public function testRequireBirthDayFieldWhenForceScoring()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireBirthDayFieldWhenForceScoring(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
         $passport = (new Passport())->setNumber(123)
             ->setSeries(123)
-            ->setIssueDate((new \DateTime('now')));
+            ->setIssueDate((new DateTime('now')));
 
         $good = (new Good())->setPrice(10000);
-        $model = (new OrderCreation())->addGood($good)
+        (new OrderCreation())->addGood($good)
             ->setPointId(123)
+            ->setPassport($passport)
             ->setFirstName('test')
             ->setSecondName('test')
             ->setLastName('test')

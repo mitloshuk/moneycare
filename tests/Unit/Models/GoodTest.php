@@ -2,19 +2,44 @@
 
 namespace MoneyCare\Tests\Unit\Models;
 
-use Codeception\PHPUnit\TestCase;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 use MoneyCare\Models\Good;
-use MoneyCare\Models\OrderCreation;
-use MoneyCare\Models\Passport;
-use DateTime;
 
-class GoodTest extends TestCase
+/**
+ * Class GoodTest
+ *
+ * @package MoneyCare\Tests\Unit\Models
+ */
+class GoodTest extends ModelTest
 {
-    public function testRequirePriceField()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getClassForSettersTest(): ?string
+    {
+        return Good::class;
+    }
+
+    /**
+     * @return void
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequirePriceField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
-        (new Passport())->getData();
+        (new Good())->getData();
+    }
+
+    /**
+     * @return void
+     * @throws ModelRequiredFieldException
+     */
+    public function testValidGood(): void
+    {
+        $data = (new Good())->setPrice(100)->setTitle('test')->getData();
+
+        self::assertEquals(100, $data['price']);
+        self::assertEquals('test', $data['title']);
     }
 }

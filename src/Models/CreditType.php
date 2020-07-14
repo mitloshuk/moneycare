@@ -3,6 +3,7 @@
 namespace MoneyCare\Models;
 
 use MoneyCare\Dictionaries\CreditTypesDictionary;
+use MoneyCare\Exceptions\PredefinedValue\CreditTypeException;
 
 /**
  * Class CreditType
@@ -32,12 +33,15 @@ class CreditType extends Model
      * @param string $creditType
      *
      * @return $this
+     * @throws CreditTypeException
      */
     public function setCreditType(string $creditType): self
     {
-        if (CreditTypesDictionary::exists($creditType)) {
-            $this->creditType = $creditType;
+        if (!CreditTypesDictionary::exists($creditType)) {
+            throw new CreditTypeException();
         }
+
+        $this->creditType = $creditType;
 
         return $this;
     }

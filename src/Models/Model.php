@@ -2,8 +2,7 @@
 
 namespace MoneyCare\Models;
 
-use MoneyCare\Dictionaries\GoodTypesDictionary;
-use MoneyCare\Exceptions\GoodTypeException;
+use MoneyCare\Exceptions\PredefinedValue\GoodTypeException;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 
 /**

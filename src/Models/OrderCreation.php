@@ -5,6 +5,7 @@ namespace MoneyCare\Models;
 use MoneyCare\Dictionaries\FormModesDictionary;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 use DateTime;
+use MoneyCare\Exceptions\PredefinedValue\FormModeException;
 
 /**
  * Class OrderCreation
@@ -251,12 +252,15 @@ class OrderCreation extends Model
      * @param string $formMode
      *
      * @return $this
+     * @throws FormModeException
      */
     public function setFormMode(string $formMode): self
     {
         if (FormModesDictionary::exists($formMode)) {
-            $this->formMode = $formMode;
+            throw new FormModeException();
         }
+
+        $this->formMode = $formMode;
 
         return $this;
     }
@@ -373,7 +377,7 @@ class OrderCreation extends Model
      */
     public function setBirthDay(DateTime $birthDay): self
     {
-        $this->birthDay = $birthDay->format('d.m.Y');
+        $this->birthDay = $birthDay->format('Y-m-d');
 
         return $this;
     }

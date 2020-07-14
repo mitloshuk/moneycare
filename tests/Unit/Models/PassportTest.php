@@ -9,9 +9,20 @@ use MoneyCare\Models\OrderCreation;
 use MoneyCare\Models\Passport;
 use DateTime;
 
-class PassportTest extends TestCase
+class PassportTest extends ModelTest
 {
-    public function testRequireIssueDateField()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getClassForSettersTest(): ?string
+    {
+        return Passport::class;
+    }
+
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireIssueDateField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
@@ -20,7 +31,10 @@ class PassportTest extends TestCase
             ->getData();
     }
 
-    public function testRequireSeriesField()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireSeriesField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 
@@ -29,7 +43,10 @@ class PassportTest extends TestCase
             ->getData();
     }
 
-    public function testRequireNumberField()
+    /**
+     * @throws ModelRequiredFieldException
+     */
+    public function testRequireNumberField(): void
     {
         $this->expectException(ModelRequiredFieldException::class);
 

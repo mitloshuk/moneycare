@@ -2,8 +2,6 @@
 
 namespace MoneyCare\Exceptions;
 
-use Exception;
-use MoneyCare\Dictionaries\GoodTypesDictionary;
 use MoneyCare\Models\Model;
 use Throwable;
 use ReflectionClass;

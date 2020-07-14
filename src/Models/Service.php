@@ -67,6 +67,14 @@ class Service extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getProduct(): string
+    {
+        return $this->product;
+    }
+
+    /**
      * @param string $company
      *
      * @return $this
@@ -76,6 +84,14 @@ class Service extends Model
         $this->company = $company;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompany(): string
+    {
+        return $this->company;
     }
 
     /**
@@ -91,6 +107,14 @@ class Service extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getCertSeries(): string
+    {
+        return $this->certSeries;
+    }
+
+    /**
      * @param string $certNumber
      *
      * @return $this
@@ -103,6 +127,14 @@ class Service extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getCertNumber(): string
+    {
+        return $this->certNumber;
+    }
+
+    /**
      * @param float $price
      *
      * @return $this
@@ -112,5 +144,13 @@ class Service extends Model
         $this->price = $price;
 
         return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
     }
 }

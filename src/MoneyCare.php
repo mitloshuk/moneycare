@@ -67,12 +67,12 @@ class MoneyCare
 
     /**
      * @param string $orderId
-     * @param string $model
+     * @param string $status
      *
      * @return UpdateStatusRequest
      */
     public function updateStatus(string $orderId, string $status): UpdateStatusRequest
     {
-        return new UpdateStatusRequest($this, $model);
+        return new UpdateStatusRequest($this, $orderId, $status);
     }
 }

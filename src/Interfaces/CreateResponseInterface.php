@@ -23,12 +23,12 @@ interface CreateResponseInterface
      *
      * @return string
      */
-    public function getFormUrl(): string;
+    public function getFormUrl(): ?string;
 
     /**
      * Get reason when order is not accepted
      *
      * @return string
      */
-    public function getReason(): string;
+    public function getReason(): ?string;
 }

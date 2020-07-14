@@ -68,7 +68,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getBankId(): string
+    public function getBankId(): ?string
     {
         return $this->response['bankId'];
     }
@@ -76,7 +76,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getProductCode(): string
+    public function getProductCode(): ?string
     {
         return $this->response['productCode'];
     }
@@ -84,7 +84,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getProductTitle(): string
+    public function getProductTitle(): ?string
     {
         return $this->response['productTitle'];
     }
@@ -92,7 +92,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getProductType(): string
+    public function getProductType(): ?string
     {
         return $this->response['productType'];
     }
@@ -100,7 +100,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getDownPayment(): float
+    public function getDownPayment(): ?float
     {
         return $this->response['downpayment'];
     }
@@ -108,7 +108,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getCreditLimit(): float
+    public function getCreditLimit(): ?float
     {
         return $this->response['creditLimit'];
     }
@@ -116,7 +116,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getCreditLimitCartOnly(): float
+    public function getCreditLimitCartOnly(): ?float
     {
         return $this->response['creditLimitCartOnly'];
     }
@@ -124,7 +124,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getContractNumber(): string
+    public function getContractNumber(): ?string
     {
         return $this->response['contractNumber'];
     }
@@ -132,7 +132,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getInternalProductCode(): string
+    public function getInternalProductCode(): ?string
     {
         return $this->response['internalProductCode'];
     }
@@ -140,7 +140,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getRequestedProductCode(): string
+    public function getRequestedProductCode(): ?string
     {
         return $this->response['requestedProductCode'];
     }
@@ -148,7 +148,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getGoods(): array
+    public function getGoods(): ?array
     {
         return $this->response['goods'];
     }
@@ -156,7 +156,7 @@ class DetailsResponse implements DetailsResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function getServices(): array
+    public function getServices(): ?array
     {
         return $this->response['services'];
     }

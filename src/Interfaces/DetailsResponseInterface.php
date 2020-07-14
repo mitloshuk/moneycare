@@ -19,82 +19,82 @@ interface DetailsResponseInterface
      *
      * @return string
      */
-    public function getBankId(): string;
+    public function getBankId(): ?string;
 
     /**
      * Bank product code
      *
      * @return string
      */
-    public function getProductCode(): string;
+    public function getProductCode(): ?string;
 
     /**
      * Bank product name
      *
      * @return string
      */
-    public function getProductTitle(): string;
+    public function getProductTitle(): ?string;
 
     /**
      * Bank product type (classic, installment)
      *
      * @return string
      */
-    public function getProductType(): string;
+    public function getProductType(): ?string;
 
     /**
      * First payment
      *
      * @return float
      */
-    public function getDownPayment(): float;
+    public function getDownPayment(): ?float;
 
     /**
      * Amount of credit (full)
      *
      * @return float
      */
-    public function getCreditLimit(): float;
+    public function getCreditLimit(): ?float;
 
     /**
      * Amount of credit (only goods)
      *
      * @return float
      */
-    public function getCreditLimitCartOnly(): float;
+    public function getCreditLimitCartOnly(): ?float;
 
     /**
      * Credit contract number
      *
      * @return string
      */
-    public function getContractNumber(): string;
+    public function getContractNumber(): ?string;
 
     /**
      * Internal code of bank product
      *
      * @return string
      */
-    public function getInternalProductCode(): string;
+    public function getInternalProductCode(): ?string;
 
     /**
      * Requisted code of bank product
      *
      * @return string
      */
-    public function getRequestedProductCode(): string;
+    public function getRequestedProductCode(): ?string;
 
     /**
      * Array of goods
      *
      * @return Good[]
      */
-    public function getGoods(): array;
+    public function getGoods(): ?array;
 
     /**
      * Array of services
      *
      * @return Service[]
      */
-    public function getServices(): array;
+    public function getServices(): ?array;
 }

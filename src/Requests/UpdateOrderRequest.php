@@ -42,9 +42,9 @@ class UpdateOrderRequest extends MoneyCareRequest
      *
      * @return void
      */
-    public function execute(): void
+    public function execute(): string
     {
-        $this->moneyCare->httpClient->put($this->getMethodUrl(), $this->model->getData());
+        return $this->moneyCare->httpClient->put($this->getMethodUrl(), $this->model->getData());
     }
 
     /**

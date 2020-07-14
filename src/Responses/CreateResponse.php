@@ -26,7 +26,7 @@ class CreateResponse implements CreateResponseInterface
     /**
      * @return string
      */
-    public function getReason(): string
+    public function getReason(): ?string
     {
         return $this->response['reason'];
     }
@@ -34,7 +34,7 @@ class CreateResponse implements CreateResponseInterface
     /**
      * @return string
      */
-    public function getFormUrl(): string
+    public function getFormUrl(): ?string
     {
         return $this->response['formUrl'];
     }

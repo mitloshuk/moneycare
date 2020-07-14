@@ -1,8 +1,8 @@
 <?php
 
-namespace MoneyCare\Exceptions;
+namespace MoneyCare\Exceptions\Api;
 
-use Exception;
+use MoneyCare\Exceptions\MoneyCareException;
 use Throwable;
 
 /**

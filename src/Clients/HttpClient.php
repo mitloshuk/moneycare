@@ -5,8 +5,8 @@ namespace MoneyCare\Clients;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use MoneyCare\Exceptions\HttpClientErrorException;
-use MoneyCare\Exceptions\MoneyCareApiException;
-use MoneyCare\Exceptions\MoneyCareUnauthorizedException;
+use MoneyCare\Exceptions\Api\MoneyCareApiException;
+use MoneyCare\Exceptions\Api\MoneyCareUnauthorizedException;
 use MoneyCare\Interfaces\HttpClientInterface;
 use Psr\Http\Message\ResponseInterface;
 

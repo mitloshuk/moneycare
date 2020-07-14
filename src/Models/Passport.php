@@ -69,7 +69,7 @@ class Passport extends Model
      */
     public function setIssueDate(DateTime $dateTime): self
     {
-        $this->issueDate = $dateTime->format('d.m.Y');
+        $this->issueDate = $dateTime->format('Y-m-d');
 
         return $this;
     }
