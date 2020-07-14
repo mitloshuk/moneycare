@@ -3,6 +3,8 @@
 namespace MoneyCare;
 
 use MoneyCare\Clients\HttpClient;
+use MoneyCare\Exceptions\ModelRequiredFieldException;
+use MoneyCare\Exceptions\MoneyCareException;
 use MoneyCare\Interfaces\HttpClientInterface;
 use MoneyCare\Models\OrderUpdating;
 use MoneyCare\Models\OrderCreation;
@@ -10,7 +12,14 @@ use MoneyCare\Requests\CreateOrderRequest;
 use MoneyCare\Requests\OrderDetailsRequest;
 use MoneyCare\Requests\UpdateOrderRequest;
 use MoneyCare\Requests\UpdateStatusRequest;
+use MoneyCare\Responses\CreateResponse;
+use MoneyCare\Responses\DetailsResponse;
 
+/**
+ * Class MoneyCare
+ *
+ * @package MoneyCare
+ */
 class MoneyCare
 {
     /**
@@ -37,42 +46,46 @@ class MoneyCare
     /**
      * @param OrderCreation $model
      *
-     * @return CreateOrderRequest
+     * @return CreateResponse
+     * @throws MoneyCareException
      */
-    public function createOrder(OrderCreation $model): CreateOrderRequest
+    public function createOrder(OrderCreation $model): CreateResponse
     {
-        return new CreateOrderRequest($this, $model);
+        return (new CreateOrderRequest($this, $model))->execute();
     }
 
     /**
-     * @param string $orderId
+     * @param string        $orderId
      * @param OrderUpdating $model
      *
-     * @return UpdateOrderRequest
+     * @return void
+     * @throws MoneyCareException
      */
-    public function updateOrder(string $orderId, OrderUpdating $model): UpdateOrderRequest
+    public function updateOrder(string $orderId, OrderUpdating $model): void
     {
-        return new UpdateOrderRequest($this, $orderId, $model);
+        (new UpdateOrderRequest($this, $orderId, $model))->execute();
     }
 
     /**
      * @param string $orderId
      *
-     * @return OrderDetailsRequest
+     * @return DetailsResponse
+     * @throws MoneyCareException
      */
-    public function orderDetails(string $orderId): OrderDetailsRequest
+    public function orderDetails(string $orderId): DetailsResponse
     {
-        return new OrderDetailsRequest($this, $orderId);
+        return (new OrderDetailsRequest($this, $orderId))->execute();
     }
 
     /**
      * @param string $orderId
      * @param string $status
      *
-     * @return UpdateStatusRequest
+     * @return void
+     * @throws MoneyCareException
      */
-    public function updateStatus(string $orderId, string $status): UpdateStatusRequest
+    public function updateStatus(string $orderId, string $status): void
     {
-        return new UpdateStatusRequest($this, $orderId, $status);
+        (new UpdateStatusRequest($this, $orderId, $status))->execute();
     }
 }

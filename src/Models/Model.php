@@ -2,7 +2,6 @@
 
 namespace MoneyCare\Models;
 
-use MoneyCare\Exceptions\PredefinedValue\GoodTypeException;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
 
 /**

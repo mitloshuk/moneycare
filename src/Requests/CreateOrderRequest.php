@@ -2,8 +2,6 @@
 
 namespace MoneyCare\Requests;
 
-use MoneyCare\Exceptions\ModelRequiredFieldException;
-use MoneyCare\Exceptions\MoneyCareException;
 use MoneyCare\Models\OrderCreation;
 use MoneyCare\MoneyCare;
 use MoneyCare\Responses\CreateResponse;

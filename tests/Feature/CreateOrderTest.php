@@ -2,7 +2,7 @@
 
 namespace MoneyCare\Tests\Feature;
 
-use Cassandra\Date;
+use DateTime;
 use Codeception\PHPUnit\TestCase;
 use MoneyCare\Clients\HttpClient;
 use MoneyCare\Exceptions\ModelRequiredFieldException;
@@ -11,15 +11,23 @@ use MoneyCare\Exceptions\Api\MoneyCareUnauthorizedException;
 use MoneyCare\Interfaces\HttpClientInterface;
 use MoneyCare\Models\Good;
 use MoneyCare\Models\OrderCreation;
-use MoneyCare\Models\OrderUpdating;
 use MoneyCare\Models\Passport;
 use MoneyCare\MoneyCare;
-use MoneyCare\Requests\UpdateOrderRequest;
-use MoneyCare\Responses\CreateResponse;
+use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * Class CreateOrderTest
+ *
+ * @package MoneyCare\Tests\Feature
+ */
 class CreateOrderTest extends TestCase
 {
-    public function testExceptions()
+    /**
+     * @throws ModelRequiredFieldException
+     * @throws MoneyCareException
+     * @throws MoneyCareUnauthorizedException
+     */
+    public function testExceptions(): void
     {
         $this->expectException(MoneyCareException::class);
 
@@ -40,13 +48,17 @@ class CreateOrderTest extends TestCase
 
         $moneyCare = new MoneyCare('123', '123', $httpClient);
 
-        $moneyCare->createOrder($model)->execute();
+        $moneyCare->createOrder($model);
     }
 
-    public function testCreate()
+    /**
+     * @throws ModelRequiredFieldException
+     * @throws MoneyCareException
+     */
+    public function testCreate(): void
     {
         /**
-         * @var HttpClientInterface $httpClient
+         * @var HttpClientInterface|MockObject $httpClient
          */
         $httpClient = $this->getMockBuilder(HttpClient::class)
             ->onlyMethods(['request'])
@@ -62,7 +74,7 @@ class CreateOrderTest extends TestCase
         $moneyCare = new MoneyCare('api_test', '1234567', $httpClient);
 
         $good = (new Good())->setPrice(10000);
-        $passport = (new Passport())->setIssueDate(new \DateTime('now'))
+        $passport = (new Passport())->setIssueDate(new DateTime('now'))
             ->setNumber(123123)
             ->setSeries(1234);
 
@@ -72,10 +84,10 @@ class CreateOrderTest extends TestCase
             ->setFirstName('Артем')
             ->setSecondName('Артемович')
             ->setLastName('Артемов')
-            ->setBirthDay(new \DateTime('now'))
+            ->setBirthDay(new DateTime('now'))
             ->setPointId('tt_test_1');
 
-        $response = $moneyCare->createOrder($model)->execute();
+        $response = $moneyCare->createOrder($model);
 
         self::assertEquals('112233', $response->getOrderId());
         self::assertEquals(false, $response->getIsAccepted());
