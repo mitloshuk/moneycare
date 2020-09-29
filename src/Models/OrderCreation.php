@@ -219,7 +219,7 @@ class OrderCreation extends Model
             $this->creditTypes = [];
         }
 
-        $this->creditTypes[] = $creditType->getData();
+        $this->creditTypes[] = $creditType->getData()['creditType'];
 
         return $this;
     }
