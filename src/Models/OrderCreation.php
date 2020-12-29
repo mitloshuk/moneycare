@@ -70,6 +70,11 @@ class OrderCreation extends Model
     protected $goods;
 
     /**
+     * @var string
+     */
+    protected $entrypointCode;
+
+    /**
      * @var float
      */
     protected $downPayment;
@@ -167,6 +172,13 @@ class OrderCreation extends Model
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function setEntrypointCode(string $entrypointCode): self
+    {
+        $this->entrypointCode = $entrypointCode;
 
         return $this;
     }
